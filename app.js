@@ -29,7 +29,11 @@ app.set('case sensitive routing', true);
 app.use(bodyParser.json());
 // [END setup]
 
-app.get("/echo", (req, res) => {
+app.post('/echo', (req, res) => {
+    res.status(200).json({ message: req.body.message }).end();
+  });
+
+app.get("/timeline", (req, res) => {
     console.log("fetching timeline with id:" + req.params.id)
   
     const connection = mysql.createConnection({

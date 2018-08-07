@@ -6,7 +6,7 @@ const app = express()
 
 app.use(morgan("short"))
 
-app.get("/timeline", (req, res) => {
+app.get("/echo", (req, res) => {
   console.log("fetching timeline with id:" + req.params.id)
 
   const connection = mysql.createConnection({
