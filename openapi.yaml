@@ -15,7 +15,7 @@ schemes:
 paths:
   "/echo":
     post:
-      description: "Echo back a given message."
+      summary: "Echo back a given message."
       operationId: "echo"
       produces:
       - "application/json"
@@ -33,20 +33,25 @@ paths:
           $ref: "#/definitions/echoMessage"
   "/timeline":
     get:
-      description: "Returns timeline data."
+      summary: "Returns timeline data."
       operationId: "timeline"
       produces:
       - "application/json"
       responses:
         200:
-          description: "Timeline data."
+          description: "Timeline"
           schema:
             $ref: "#/definitions/timeline"
-      security:
-      - google_jwt: []
+      parameters:
+      - description: "Timeline data"
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: "#/definitions/echoMessage"
   "/auth/info/googlejwt":
     get:
-      description: "Returns the requests' authentication information."
+      summary: "Returns the requests' authentication information."
       operationId: "auth_info_google_jwt"
       produces:
       - "application/json"
@@ -79,18 +84,14 @@ definitions:
   timeline:
     type: "object"
     properties:
-      Client:
+      client:
         type: "string"
-        description: Name of the Client.
-      Stage:
+      stage:
         type: "string"
-        description: Client Stage.
-      Start:
-        type: "date"
-        description: Stage start day.
-      End:
-        type: "date"
-        description: Stage end day.
+      start:
+        type: "string"
+      end:
+        type: "string"
   authInfoResponse:
     properties:
       id:
