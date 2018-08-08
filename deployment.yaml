@@ -12,45 +12,45 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: esp-echo
-spec:
-  ports:
-  - port: 80
-    targetPort: 8081
-    protocol: TCP
-    name: http
-  selector:
-    app: esp-echo
-  type: LoadBalancer
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: esp-echo
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: esp-echo
-    spec:
-      containers:
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: esp-echo
+#spec:
+#  ports:
+#  - port: 80
+#    targetPort: 8081
+#    protocol: TCP
+#    name: http
+#  selector:
+#    app: esp-echo
+#  type: LoadBalancer
+#---
+#apiVersion: extensions/v1beta1
+#kind: Deployment
+#metadata:
+#  name: esp-echo
+#spec:
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: esp-echo
+#    spec:
+#      containers:
       # [START esp]
-      - name: esp
-        image: gcr.io/endpoints-release/endpoints-runtime:1
-        args: [
-          "--http_port", "8081",
-          "--backend", "127.0.0.1:8080",
-          "--service", "jaredbulloch.appspot.com",
-          "--rollout_strategy", "managed",
-        ]
+#      - name: esp
+#        image: gcr.io/endpoints-release/endpoints-runtime:1
+#        args: [
+#          "--http_port", "8081",
+#          "--backend", "127.0.0.1:8080",
+#          "--service", "SERVICE_NAME",
+#          "--rollout_strategy", "managed",
+#        ]
       # [END esp]
-        ports:
-          - containerPort: 8081
-      - name: echo
-        image: gcr.io/google-samples/echo-node:1.0
-        ports:
-          - containerPort: 8080
+#        ports:
+#          - containerPort: 8081
+#      - name: echo
+#        image: gcr.io/google-samples/echo-node:1.0
+#        ports:
+#          - containerPort: 8080

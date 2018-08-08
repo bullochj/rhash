@@ -20,8 +20,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Buffer = require('safe-buffer').Buffer;
-const morgan = require("morgan")
-const mysql = require("mysql")
+//const morgan = require("morgan")
+//const mysql = require("mysql")
 
 const app = express();
 
@@ -30,9 +30,9 @@ app.use(bodyParser.json());
 // [END setup]
 
 app.post('/echo', (req, res) => {
-    res.status(200).json({ message: req.body.message }).end();
-  });
-
+  res.status(200).json({ message: req.body.message }).end();
+});
+/*
 app.get("/timeline", (req, res) => {
     console.log("fetching timeline with id:" + req.params.id)
   
@@ -61,29 +61,29 @@ app.get("/timeline", (req, res) => {
     })
   
   })
-
+*/
   
 function authInfoHandler (req, res) {
-    let authUser = { id: 'anonymous' };
-    const encodedInfo = req.get('X-Endpoint-API-UserInfo');
-    if (encodedInfo) {
-      authUser = JSON.parse(Buffer.from(encodedInfo, 'base64'));
-    }
-    res.status(200).json(authUser).end();
+  let authUser = { id: 'anonymous' };
+  const encodedInfo = req.get('X-Endpoint-API-UserInfo');
+  if (encodedInfo) {
+    authUser = JSON.parse(Buffer.from(encodedInfo, 'base64'));
   }
-  
-  app.get('/auth/info/googlejwt', authInfoHandler);
-  app.get('/auth/info/googleidtoken', authInfoHandler);
-  
-  if (module === require.main) {
-    // [START listen]
-    const PORT = process.env.PORT || 8080;
-    app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
-      console.log('Press Ctrl+C to quit.');
-    });
-    // [END listen]
-  }
-  // [END app]
-  
-  module.exports = app;
+  res.status(200).json(authUser).end();
+}
+
+app.get('/auth/info/googlejwt', authInfoHandler);
+app.get('/auth/info/googleidtoken', authInfoHandler);
+
+if (module === require.main) {
+  // [START listen]
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
+    console.log('Press Ctrl+C to quit.');
+  });
+  // [END listen]
+}
+// [END app]
+
+module.exports = app;

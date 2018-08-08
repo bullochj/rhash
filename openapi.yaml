@@ -1,7 +1,7 @@
 # [START swagger]
 swagger: "2.0"
 info:
-  description: "A simple Google Cloud Endpoints API example."
+  description: "Rittlehash endpoints."
   title: "rittlehash endpoints"
   version: "1.0.0"
 host: "jaredbulloch.appspot.com"
@@ -15,7 +15,7 @@ schemes:
 paths:
   "/echo":
     post:
-      summary: "Echo back a given message."
+      description: "Echo back a given message."
       operationId: "echo"
       produces:
       - "application/json"
@@ -31,27 +31,20 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/echoMessage"
-  "/timeline":
-    get:
-      summary: "Returns timeline data."
-      operationId: "timeline"
-      produces:
-      - "application/json"
-      responses:
-        200:
-          description: "Timeline"
-          schema:
-            $ref: "#/definitions/timeline"
-      parameters:
-      - description: "Timeline data"
-        in: body
-        name: message
-        required: true
-        schema:
-          $ref: "#/definitions/echoMessage"
+#  "/timeline":
+#    get:
+#      summary: "Returns timeline data."
+#      operationId: "timeline"
+#      produces:
+#      - "application/json"
+#      responses:
+#        200:
+#          description: "Timeline"
+#          schema:
+#            $ref: "#/definitions/timeline"
   "/auth/info/googlejwt":
     get:
-      summary: "Returns the requests' authentication information."
+      description: "Returns the requests' authentication information."
       operationId: "auth_info_google_jwt"
       produces:
       - "application/json"
@@ -81,17 +74,17 @@ definitions:
     properties:
       message:
         type: "string"
-  timeline:
-    type: "object"
-    properties:
-      client:
-        type: "string"
-      stage:
-        type: "string"
-      start:
-        type: "string"
-      end:
-        type: "string"
+#  timeline:
+#    type: "object"
+#    properties:
+#      client:
+#        type: "string"
+#      stage:
+#        type: "string"
+#      start:
+#        type: "string"
+#      end:
+#        type: "string"
   authInfoResponse:
     properties:
       id:
@@ -132,5 +125,4 @@ securityDefinitions:
     x-google-jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
     # Your OAuth2 client's Client ID must be added here. You can add
     # multiple client IDs to accept tokens from multiple clients.
-    x-google-audiences: "189480166723-1nd5751doqpa4pu7o0ifv8rv2fjgop4i.apps.googleusercontent.com"
-
+    x-google-audiences: "YOUR-CLIENT-ID"
