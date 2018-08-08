@@ -21,7 +21,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Buffer = require('safe-buffer').Buffer;
 //const morgan = require("morgan")
-//const mysql = require("mysql")
+const mysql = require("mysql")
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.post('/echo', (req, res) => {
   res.status(200).json({ message: req.body.message }).end();
 });
-/*
+
 app.get("/timeline", (req, res) => {
     console.log("fetching timeline with id:" + req.params.id)
   
@@ -61,7 +61,6 @@ app.get("/timeline", (req, res) => {
     })
   
   })
-*/
   
 function authInfoHandler (req, res) {
   let authUser = { id: 'anonymous' };

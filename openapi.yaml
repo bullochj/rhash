@@ -4,7 +4,7 @@ info:
   description: "Rittlehash endpoints."
   title: "rittlehash endpoints"
   version: "1.0.0"
-host: "jaredbulloch.appspot.com"
+host: "rittlehash.appspot.com"
 # [END swagger]
 consumes:
 - "application/json"
@@ -31,17 +31,17 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/echoMessage"
-#  "/timeline":
-#    get:
-#      summary: "Returns timeline data."
-#      operationId: "timeline"
-#      produces:
-#      - "application/json"
-#      responses:
-#        200:
-#          description: "Timeline"
-#          schema:
-#            $ref: "#/definitions/timeline"
+  "/timeline":
+    get:
+      summary: "Returns timeline data."
+      operationId: "timeline"
+      produces:
+      - "application/json"
+      responses:
+       200:
+          description: "Timeline"
+          schema:
+            $ref: "#/definitions/timeline"
   "/auth/info/googlejwt":
     get:
       description: "Returns the requests' authentication information."
@@ -74,17 +74,17 @@ definitions:
     properties:
       message:
         type: "string"
-#  timeline:
-#    type: "object"
-#    properties:
-#      client:
-#        type: "string"
-#      stage:
-#        type: "string"
-#      start:
-#        type: "string"
-#      end:
-#        type: "string"
+  timeline:
+    type: "object"
+    properties:
+      client:
+        type: "string"
+      stage:
+        type: "string"
+      start:
+        type: "string"
+      end:
+        type: "string"
   authInfoResponse:
     properties:
       id:
@@ -110,7 +110,7 @@ securityDefinitions:
     # This must match the 'iss' field in the JWT.
     x-google-issuer: "jwt-client.endpoints.sample.google.com"
     # Update this with your service account's email address.
-    x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/YOUR-SERVICE-ACCOUNT-EMAIL"
+    x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/jared@jaredbulloch.com"
     # This must match the "aud" field in the JWT. You can add multiple
     # audiences to accept JWTs from multiple clients.
     x-google-audiences: "echo.endpoints.sample.google.com"
@@ -125,4 +125,4 @@ securityDefinitions:
     x-google-jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
     # Your OAuth2 client's Client ID must be added here. You can add
     # multiple client IDs to accept tokens from multiple clients.
-    x-google-audiences: "YOUR-CLIENT-ID"
+    x-google-audiences: "433026804012-mivqpvf11tockaeqrinm1f5mjdeol4df.apps.googleusercontent.com"
