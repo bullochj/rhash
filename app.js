@@ -20,8 +20,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Buffer = require('safe-buffer').Buffer;
+const mysql = require('mysql');
 //const morgan = require("morgan")
-const mysql = require("mysql")
 
 const app = express();
 
