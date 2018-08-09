@@ -21,9 +21,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Buffer = require('safe-buffer').Buffer;
 const mysql = require('mysql');
-//const morgan = require("morgan")
-
+const morgan = require("morgan")
 const app = express();
+
+app.use(morgan("short"))
 
 app.set('case sensitive routing', true);
 app.use(bodyParser.json());
@@ -47,7 +48,7 @@ app.get("/timeline", (req, res) => {
     connection.query(querystring, (err, rows, fields) => {
       if (err) {
         console.log("failed to query timeline: " + err)
-        res.sendStatus(500)
+        res.send(500, err)
         return
       }
   
